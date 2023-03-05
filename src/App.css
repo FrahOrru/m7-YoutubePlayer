@@ -1,38 +1,76 @@
 .App {
-  text-align: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.left-elem {
+  width: 20%;
+  margin: 0.5rem;
+  min-height: 100%;
+  align-self: stretch;
+}
+.rigth-elem {
+  width: 79%;
+  margin: 0.5rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.4px);
+  -webkit-backdrop-filter: blur(4.4px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.loader {
+  width: 215px;
+  height: 220px;
+  background:
+      linear-gradient(0.25turn, transparent, #FFF, transparent),
+      linear-gradient(#DDD, #DDD),
+      linear-gradient(#DDD, #DDD),
+      linear-gradient(#DDD, #DDD);
+  background-color: rgba(255, 255, 255, 0.25);
+  background-repeat: no-repeat;
+  background-size: 215px 220px, 215px 130px, 100px 15px, 150px 15px;
+  background-position: -215px 0, 0 0, 15px 150px, 15px 180px;
+  animation: loading 1.5s infinite;
+}
+
+.video-detail {
+  margin: 0.5rem;
+}
+
+.video-player {
+  padding: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr)
+}
+
+.player {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  grid-column-start: 2;
+  grid-column-end: 9;
+}
+
+.video-right {
+  display: flex;
+  grid-column-start: 9;
+  grid-column-end: 13;
+}
+
+.searchBar {
+  display: flex;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+@keyframes loading {
+to {
+  background-position: 215px 0, 0 0, 15px 150px, 15px 180px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
