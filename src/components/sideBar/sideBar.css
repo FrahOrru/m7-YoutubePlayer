@@ -1,0 +1,16 @@
+.sidebar ul {
+    list-style-type: none;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.sidebar ul li {
+    padding: 1rem 0;
+}
+
+.sidebar ul li:hover {
+    transform: scale(1.1);
+}
