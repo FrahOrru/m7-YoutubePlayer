@@ -3,10 +3,15 @@ import { motion } from "framer-motion"
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-export default function VideoElement({ video, isLittle, onVideoClicked}) {
+export default function VideoElement({ video, isLittle, isChangingPage }) {
     
     const navigate = useNavigate();
-    const [isChanging, setIsChanging] = useState(false);
+
+    const onVideoClicked = () => {
+        isChangingPage(true);
+
+        navigate(`/search/${video.id.videoId}`)
+    }
     
     return(
         <motion.div
@@ -15,14 +20,14 @@ export default function VideoElement({ video, isLittle, onVideoClicked}) {
         >
             {
                 isLittle ? 
-                <LittleVideoElementStyled onClick={onVideoClicked(video.id.videoId)}>
+                <LittleVideoElementStyled onClick={onVideoClicked}>
                     <img src={video.snippet.thumbnails.url} alt="videoImage"></img>
                     <div>
                         <h3>{video.title}</h3>
                         <h4>{video.channelName}</h4>
                     </div>
                 </LittleVideoElementStyled> :
-                <VideoElementStyled onClick={onVideoClicked(video.id.videoId)} className="video-element">
+                <VideoElementStyled onClick={onVideoClicked} className="video-element">
                     <img src={video.snippet.thumbnails.url} alt="videoImage"></img>
                     <h3>{video.title}</h3>
                     <h4>{video.channelName}</h4>

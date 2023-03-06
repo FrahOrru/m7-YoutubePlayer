@@ -41,7 +41,7 @@ export default function Dashboard() {
                 }
                 {
                     data?.map((video) => (
-                    <VideoElement key={video.id.videoId} video={video}></VideoElement>
+                    <VideoElement isChangingPage={() => {}} key={video.id.videoId} video={video}></VideoElement>
                     ))
                 }
             </div>
