@@ -1,14 +1,13 @@
 .App {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  height: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: space-around;
 }
 
 .left-elem {
   width: 20%;
   margin: 0.5rem;
-  min-height: 100%;
   align-self: stretch;
 }
 .rigth-elem {
@@ -20,19 +19,17 @@
   background: rgba(255, 255, 255, 0.25);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(4.4px);
-  -webkit-backdrop-filter: blur(4.4px);
+  backdrop-filter: blur(7.9px);
+  -webkit-backdrop-filter: blur(7.9px);
   border: 1px solid rgba(255, 255, 255, 0.09);
 }
 
 .loader {
   width: 215px;
   height: 220px;
-  background:
-      linear-gradient(0.25turn, transparent, #FFF, transparent),
-      linear-gradient(#DDD, #DDD),
-      linear-gradient(#DDD, #DDD),
-      linear-gradient(#DDD, #DDD);
+  background: linear-gradient(0.25turn, transparent, #fff, transparent),
+    linear-gradient(#ddd, #ddd), linear-gradient(#ddd, #ddd),
+    linear-gradient(#ddd, #ddd);
   background-color: rgba(255, 255, 255, 0.25);
   background-repeat: no-repeat;
   background-size: 215px 220px, 215px 130px, 100px 15px, 150px 15px;
@@ -48,7 +45,7 @@
 .video-player {
   padding: 2rem 0;
   display: grid;
-  grid-template-columns: repeat(12, 1fr)
+  grid-template-columns: repeat(12, 1fr);
 }
 
 .player {
@@ -96,17 +93,26 @@
   cursor: pointer;
 }
 
+.txt-black {
+  color: #000;
+}
+.txt-white {
+  color: #fff;
+}
+.no-padding {
+  padding: 0;
+}
 @media screen and (max-width: 1200px) {
   .video-player {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin: 4rem
+    margin: 4rem;
   }
 }
 
 @keyframes loading {
-to {
-  background-position: 215px 0, 0 0, 15px 150px, 15px 180px;
-}
+  to {
+    background-position: 215px 0, 0 0, 15px 150px, 15px 180px;
+  }
 }

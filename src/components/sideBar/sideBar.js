@@ -1,38 +1,34 @@
-import React from 'react';
-import './sideBar.css'
+import React from "react";
+import { ListStyled } from "../styled/list-styled";
 
-const SideBar = () => {
+const SideBar = ({ onElementClicked }) => {
   const categories = [
-    'Home',
-    'Trending',
-    'Subscriptions',
-    'Library',
-    'History',
-    'Your Videos',
-    'Watch Later',
-    'Liked Videos',
-    'Playlists',
-    'Uploads',
-    'Live Streaming',
-    'Gaming',
-    'Sports',
-    'Music',
-    'News',
-    'Movies & Shows',
-    'Learning & Education',
-    'Virtual Reality'
+    "Home",
+    "Playlists",
+    "Party Mode",
+    "Library",
+    "History",
+    "Your Videos",
+    "Watch Later",
+    "Liked Videos",
+    "Uploads",
+    "Live Streaming",
+    "Gaming",
+    "Sports",
   ];
 
   return (
-    <div className="sidebar">
-      <ul>
-        {categories.map((category) => (
-          <li key={category}>
-            <a href="#">{category}</a>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ListStyled>
+      {categories.map((category) => (
+        <li
+          className="txt-white"
+          key={category}
+          onClick={() => onElementClicked(category)}
+        >
+          {category}
+        </li>
+      ))}
+    </ListStyled>
   );
 };
 
