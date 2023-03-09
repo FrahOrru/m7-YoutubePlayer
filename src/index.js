@@ -6,14 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import VideoDetail from "./routes/VideoDetail";
 import PlayList from "./routes/PlayList";
-
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider,
-} from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
+import PlaylistDetail from "./components/playlist-detail/playlist-detail";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const queryClient = new QueryClient();
@@ -25,7 +19,7 @@ root.render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/search/:videoId" element={<VideoDetail />} />
-          <Route path="/playlist/:playlistId" element={<PlayList />} />1
+          <Route path="/playlist/:playlistId" element={<PlaylistDetail />} />1
         </Routes>
       </QueryClientProvider>
     </BrowserRouter>

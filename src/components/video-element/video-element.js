@@ -9,11 +9,14 @@ import { useState } from "react";
 import AddToPlaylistModal from "../add-to-playlist-modal/add-to-playlist-modal";
 
 export default function VideoElement({
+  mode,
   video,
   isLittle,
   isChangingPage,
   onAddToPlaylistModal,
+  onRemoveFromPlaylist,
 }) {
+  const [videoActions, setVideoActions] = useState([]);
   const navigate = useNavigate();
 
   const onVideoClicked = () => {
@@ -21,6 +24,26 @@ export default function VideoElement({
 
     navigate(`/search/${video.id.videoId}`);
   };
+
+  if (mode === "playlist") {
+    setVideoActions([
+      ...videoActions,
+      {
+        url: "https://img.icons8.com/material-outlined/24/000000/delete-forever.png",
+        alt: "remove",
+        action: () => onRemoveFromPlaylist(),
+      },
+    ]);
+  } else {
+    setVideoActions([
+      ...videoActions,
+      {
+        url: "https://img.icons8.com/material-outlined/24/FFFFFF/save-search.png",
+        alt: "playlist",
+        action: () => onAddToPlaylistModal(),
+      },
+    ]);
+  }
 
   return (
     <>
@@ -45,13 +68,15 @@ export default function VideoElement({
             </VideoElementStyled>
           </motion.div>
           <motion.div whileTap={{ scale: 0.9 }}>
-            <AddToPlaylistButton
-              className="glass"
-              key={video.id.videoId}
-              onClick={() => onAddToPlaylistModal(video.id.videoId)}
-            >
-              <img src="https://img.icons8.com/material-outlined/24/FFFFFF/save-search.png" />
-            </AddToPlaylistButton>
+            {videoActions.map((action) => (
+              <AddToPlaylistButton
+                className="glass"
+                key={action.alt}
+                onClick={action.action}
+              >
+                <img src={action.url} alt={action.alt} />
+              </AddToPlaylistButton>
+            ))}
           </motion.div>
         </div>
       )}

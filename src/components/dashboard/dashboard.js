@@ -62,6 +62,7 @@ export default function Dashboard() {
         newPlaylist
       );
       setTmpVideoToAdd(null);
+      setIsModalOpen(false);
     },
   });
 
@@ -81,14 +82,12 @@ export default function Dashboard() {
               .map((_, index) => <span key={index} className="loader"></span>)
           : null}
         {data?.map((video) => (
-          <div>
-            <VideoElement
-              isChangingPage={() => {}}
-              key={video.id.videoId}
-              video={video}
-              onAddToPlaylistModal={() => onAddToPlaylistModalOpen(video)}
-            ></VideoElement>
-          </div>
+          <VideoElement
+            isChangingPage={() => {}}
+            key={video.id.videoId}
+            video={video}
+            onAddToPlaylistModal={() => onAddToPlaylistModalOpen(video)}
+          ></VideoElement>
         ))}
 
         {isModalOpen ? (

@@ -9,16 +9,30 @@ export const CardStyled = styled.div`
   align-items: center;
   color: #fff;
   cursor: pointer;
-  .icon {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    position: relative;
+
+  multiple-icons {
+    width: 100%;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
   }
-  .icon img {
+`;
+
+export const CardIconStyled = styled.div`
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  img {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
+`;
+
+export const CardMultipleIconStyled = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 `;

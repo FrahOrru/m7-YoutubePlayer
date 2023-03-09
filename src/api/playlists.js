@@ -25,7 +25,7 @@ export function removePlaylist({ playlist, playlistId }) {
 
 export function addVideoToPlaylist({ playlistId, video }) {
   return axios
-    .get(
+    .post(
       `https://youtube.thorsteinsson.is/api/playlists/${playlistId}/videos`,
       video
     )

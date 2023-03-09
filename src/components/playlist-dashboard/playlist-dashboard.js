@@ -1,22 +1,20 @@
-import "./playlist-dashboard.css";
 import { useContext, useEffect, useState } from "react";
 import { SearchBarStyled } from "../styled/search-input";
-import useSWR from "swr";
 import { AnimatePresence, motion } from "framer-motion";
 import Modal from "../create-playlist-modal/create-playlist-modal";
-import { CardStyled } from "../styled/card-styled";
-import axios from "axios";
 import { useQuery } from "react-query";
 import { getPlaylist } from "../../api/playlists";
 import PlaylistContext from "../../context/PlaylistContext";
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
+import { useNavigate } from "react-router-dom";
+import PlaylistCard from "../playlist-card/playlist-card";
 
 export default function PlaylistDashboard() {
   const [searchText, setSearchText] = useState("");
   const [newPlaylistId, setNewPlaylistId] = useState(null);
 
   const { playlists, setPlaylists } = useContext(PlaylistContext);
+
+  const navigate = useNavigate();
 
   const [boardCss, setBoardCss] = useState({
     width: "99%",
@@ -77,6 +75,9 @@ export default function PlaylistDashboard() {
     },
   });
 
+  const onSharePlaylist = () => console.log(window.location);
+  const onOpenPlaylist = () => {};
+
   return (
     <div className="Dashboard">
       <SearchBarStyled
@@ -94,30 +95,23 @@ export default function PlaylistDashboard() {
           animate={isModalOpen ? { scale: 1.2 } : { scale: 1 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          <CardStyled className="glass" key="creation" id="creation-card">
-            <div className="glass icon">
-              <img
-                src="https://img.icons8.com/material-outlined/24/FFFFFF/plus-math--v1.png"
-                alt="plus"
-              />
-            </div>
-            <div>
-              <p>Create a new Playlist</p>
-            </div>
-          </CardStyled>
+          <div id="creation-card">
+            <PlaylistCard
+              key="creation"
+              mode="create"
+              text="Create a new Playlist"
+            ></PlaylistCard>
+          </div>
         </motion.div>
 
         {playlists?.map((playlist) => (
-          <CardStyled key={playlist?.name} className="glass">
-            {playlist & (playlist?.videos?.length > 0) ? (
-              <img src={playlist.videos[0]?.thumbnailUrl} alt="plus" />
-            ) : (
-              <div></div>
-            )}
-            <div>
-              <p>{playlist?.name}</p>
-            </div>
-          </CardStyled>
+          <PlaylistCard
+            key={playlist?.name}
+            mode="playlist"
+            text={playlist?.name}
+            onSharePlaylist={() => onSharePlaylist(playlist)}
+            onOpenPlaylist={() => navigate(`/playlist/${playlist.id}`)}
+          ></PlaylistCard>
         ))}
 
         <AnimatePresence>
