@@ -2,11 +2,9 @@ import {
   VideoElementStyled,
   LittleVideoElementStyled,
   AddToPlaylistButton,
-} from "./video-element-styled";
+} from "../styled/video-element-styled";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import AddToPlaylistModal from "../add-to-playlist-modal/add-to-playlist-modal";
 
 export default function VideoElement({
   mode,
@@ -16,7 +14,6 @@ export default function VideoElement({
   onAddToPlaylistModal,
   onRemoveFromPlaylist,
 }) {
-  const [videoActions, setVideoActions] = useState([]);
   const navigate = useNavigate();
 
   const onVideoClicked = () => {
@@ -25,24 +22,19 @@ export default function VideoElement({
     navigate(`/search/${video.id.videoId}`);
   };
 
+  const videoActions = [];
   if (mode === "playlist") {
-    setVideoActions([
-      ...videoActions,
-      {
-        url: "https://img.icons8.com/material-outlined/24/000000/delete-forever.png",
-        alt: "remove",
-        action: () => onRemoveFromPlaylist(),
-      },
-    ]);
-  } else {
-    setVideoActions([
-      ...videoActions,
-      {
-        url: "https://img.icons8.com/material-outlined/24/FFFFFF/save-search.png",
-        alt: "playlist",
-        action: () => onAddToPlaylistModal(),
-      },
-    ]);
+    videoActions.push({
+      url: "https://img.icons8.com/material-outlined/24/FFFFFF/delete-forever.png",
+      alt: "remove",
+      action: () => onRemoveFromPlaylist(),
+    });
+  } else if (mode === "dashboard") {
+    videoActions.push({
+      url: "https://img.icons8.com/material-outlined/24/FFFFFF/save-search.png",
+      alt: "playlist",
+      action: () => onAddToPlaylistModal(),
+    });
   }
 
   return (
@@ -68,13 +60,13 @@ export default function VideoElement({
             </VideoElementStyled>
           </motion.div>
           <motion.div whileTap={{ scale: 0.9 }}>
-            {videoActions.map((action) => (
+            {videoActions.map((videoAction) => (
               <AddToPlaylistButton
                 className="glass"
-                key={action.alt}
-                onClick={action.action}
+                key={videoAction.alt}
+                onClick={videoAction.action}
               >
-                <img src={action.url} alt={action.alt} />
+                <img src={videoAction.url} alt={videoAction.alt} />
               </AddToPlaylistButton>
             ))}
           </motion.div>

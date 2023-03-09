@@ -16,7 +16,7 @@ export function getPlaylist(playlistId) {
 
 export function removePlaylist({ playlist, playlistId }) {
   return axios
-    .get(
+    .put(
       ` https://youtube.thorsteinsson.is/api/playlists/${playlistId}`,
       playlist
     )

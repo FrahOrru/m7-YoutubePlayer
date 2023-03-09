@@ -5,7 +5,6 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import VideoDetail from "./routes/VideoDetail";
-import PlayList from "./routes/PlayList";
 import { QueryClient, QueryClientProvider } from "react-query";
 import PlaylistDetail from "./components/playlist-detail/playlist-detail";
 

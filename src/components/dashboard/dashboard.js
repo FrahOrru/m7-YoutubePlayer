@@ -4,8 +4,6 @@ import { useState } from "react";
 import useSWR from "swr";
 import VideoElement from "../video-element/video-element";
 import AddToPlaylistModal from "../add-to-playlist-modal/add-to-playlist-modal";
-import { AddToPlaylistButton } from "../video-element/video-element-styled";
-import { motion } from "framer-motion";
 import { useMutation, useQueryClient } from "react-query";
 import { addVideoToPlaylist } from "../../api/playlists";
 
@@ -83,6 +81,7 @@ export default function Dashboard() {
           : null}
         {data?.map((video) => (
           <VideoElement
+            mode="dashboard"
             isChangingPage={() => {}}
             key={video.id.videoId}
             video={video}
