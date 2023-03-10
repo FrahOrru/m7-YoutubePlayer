@@ -48,9 +48,7 @@ export default function VideoDetail() {
   const location = useLocation();
 
   useEffect(() => {
-    console.log("we", location);
     if (location.state) {
-      console.log(location.state);
     }
   }, [location]);
 
