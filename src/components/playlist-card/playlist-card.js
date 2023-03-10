@@ -9,6 +9,7 @@ export default function PlaylistCard({
   text,
   onSharePlaylist,
   onOpenPlaylist,
+  onDeletePlaylist,
 }) {
   const icons = [];
   if (mode === "create") {
@@ -27,6 +28,16 @@ export default function PlaylistCard({
       alt: "open",
       action: () => onOpenPlaylist(),
     });
+    icons.push({
+      url: "https://img.icons8.com/material-outlined/24/FFFFFF/delete-forever.png",
+      alt: "remove",
+      action: () => onDeletePlaylist(),
+    });
+  } else if (mode === "import") {
+    icons.push({
+      url: "https://img.icons8.com/material-outlined/24/FFFFFF/import.png",
+      alt: "import",
+    });
   }
 
   return (
@@ -43,7 +54,9 @@ export default function PlaylistCard({
         ))}
       </CardMultipleIconStyled>
       <div>
-        <p>{text}</p>
+        <p style={mode === "playlist" ? { fontWeight: "bold" } : null}>
+          {text}
+        </p>
       </div>
     </CardStyled>
   );

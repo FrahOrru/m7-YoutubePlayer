@@ -14,7 +14,13 @@ export function getPlaylist(playlistId) {
     .then((resp) => ({ ...resp.data, id: playlistId }));
 }
 
-export function removePlaylist({ playlist, playlistId }) {
+export function removePlaylist(playlistId) {
+  return axios
+    .delete(`https://youtube.thorsteinsson.is/api/playlists/${playlistId}`)
+    .then((resp) => ({ ...resp.data }));
+}
+
+export function removeFromPlaylist({ playlist, playlistId }) {
   return axios
     .put(
       ` https://youtube.thorsteinsson.is/api/playlists/${playlistId}`,

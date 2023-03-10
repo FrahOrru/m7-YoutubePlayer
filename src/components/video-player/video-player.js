@@ -1,4 +1,5 @@
 import YouTube from "react-youtube";
+import ReactPlayer from "react-player/youtube";
 
 export default function VideoPlayer({ videoId }) {
   const opts = {

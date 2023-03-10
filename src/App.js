@@ -6,6 +6,7 @@ import PlaylistDashboard from "./components/playlist-dashboard/playlist-dashboar
 import SideBar from "./components/sideBar/sideBar";
 import { useSelector, useDispatch } from "react-redux";
 import PlaylistContext from "./context/PlaylistContext";
+import { useLocation } from "react-router-dom";
 
 function App() {
   const [dashboardName, setDashboardName] = useState("");
@@ -17,12 +18,21 @@ function App() {
     setDashboardName(element);
   };
 
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state) {
+      setDashboardName("Playlists");
+    }
+  }, [location]);
+
   useEffect(() => {
     switch (dashboardName) {
       case "Home":
       case "":
         return setDashboard(<Dashboard />);
       case "Playlists":
+      case "fromPlaylist":
         return setDashboard(<PlaylistDashboard />);
       case "Party Mode":
         return setDashboard(<PartyDashboard />);

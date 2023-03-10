@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ModalStyled = styled.div`
+  background: #fff;
   position: absolute;
   z-index: 100;
   width: 300px;

@@ -11,6 +11,7 @@ export default function VideoElement({
   video,
   isLittle,
   isChangingPage,
+  playlistVideos,
   onAddToPlaylistModal,
   onRemoveFromPlaylist,
 }) {
@@ -18,8 +19,14 @@ export default function VideoElement({
 
   const onVideoClicked = () => {
     isChangingPage(true);
-
-    navigate(`/search/${video.id.videoId}`);
+    let state = null;
+    if (mode === "playlist") {
+      navigate(`/search/${video.id.videoId}`, {
+        state: { value: playlistVideos },
+      });
+    } else {
+      navigate(`/search/${video.id.videoId}`);
+    }
   };
 
   const videoActions = [];

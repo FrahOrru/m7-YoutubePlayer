@@ -31,7 +31,7 @@ export default function Modal({ onClose, onNewPlaylist }) {
   });
 
   return (
-    <ModalStyled className="glass">
+    <ModalStyled>
       <div style={{ display: "flex", justifyContent: "end" }}>
         <div className="close" onClick={() => onClose()}>
           &times;
@@ -46,7 +46,7 @@ export default function Modal({ onClose, onNewPlaylist }) {
           onChange={handleSearchChange}
           className="glass input"
           type="text"
-          placeholder="Search in your playlist.."
+          placeholder="insert the name of the playlist"
         ></SearchBarStyled>
 
         <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
